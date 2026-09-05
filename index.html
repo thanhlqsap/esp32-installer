@@ -29,10 +29,16 @@
           <a href="#drivers" data-i18n="nav_drivers">Cài Driver</a>
           <a href="#troubleshooting" data-i18n="nav_troubleshooting">Khắc phục lỗi</a>
         </div>
-        <!-- Language Switcher -->
-        <div class="lang-switch" role="group" aria-label="Language Switcher">
-          <button class="lang-btn active" data-lang="vi" id="btnLangVi" title="Tiếng Việt">🇻🇳 VI</button>
-          <button class="lang-btn" data-lang="en" id="btnLangEn" title="English">🇬🇧 EN</button>
+        
+        <!-- Language Selector Dropdown with Flag -->
+        <div class="lang-selector" title="Chọn ngôn ngữ / Select Language / 言語を選択">
+          <span class="lang-flag" id="currentLangFlag">🇻🇳</span>
+          <select id="langSelect" class="lang-select" aria-label="Select Language">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+          </select>
+          <span class="lang-arrow">▾</span>
         </div>
       </div>
     </nav>
@@ -159,7 +165,14 @@
   </div>
 
   <script>
-    // Bộ từ điển song ngữ Anh - Việt
+    // 1. Danh sách biểu tượng cờ tương ứng cho từng ngôn ngữ
+    const langFlags = {
+      vi: "🇻🇳",
+      en: "🇬🇧",
+      ja: "🇯🇵"
+    };
+
+    // 2. Bộ từ điển đa ngôn ngữ (Tiếng Việt - English - 日本語)
     const translations = {
       vi: {
         page_title: "Cài Đặt Firmware ESP32 Trực Tuyến (Web Installer)",
@@ -238,14 +251,53 @@
         faq3_q: "Do I need Arduino IDE or any special tool?",
         faq3_a: "Not at all! Downloading files and flashing the chip is handled 100% inside your browser.",
         footer_text: "Powered by <a href=\"https://esphome.github.io/esp-web-tools/\" target=\"_blank\">ESP Web Tools</a> &bull; Copyright &copy; 2026"
+      },
+      ja: {
+        page_title: "ESP32 オンラインファームウェアインストーラー (Web Flasher)",
+        nav_guide: "使い方ガイド",
+        nav_drivers: "ドライバー",
+        nav_troubleshooting: "トラブルシューティング",
+        hero_badge: "🚀 公式リリース v1.0.0",
+        hero_title_1: "ESP32 ファームウェア書き込み",
+        hero_title_2: "ワンクリックで完了",
+        hero_desc: "専用ツールのインストールやファイルのダウンロードは不要。ESP32ボードをUSBケーブルで接続し、ブラウザから直接クラウドインストールできます。",
+        label_version: "ファームウェアバージョンの選択:",
+        opt_stable: "v1.0.0 (安定版 - Stable)",
+        btn_install: "今すぐファームウェアをインストール",
+        unsupported_msg: "⚠️ お使いのブラウザはWeb Serialをサポートしていません。PCの <strong>Google Chrome</strong> または <strong>Microsoft Edge</strong> でこのページを開いてください。",
+        install_hint: "ブラウザにポップアップが表示されたら、シリアルポートへのアクセスを許可してください。",
+        guide_title: "わずか4ステップで簡単インストール",
+        step1_title: "USBケーブルを接続",
+        step1_desc: "ESP32ボードをPCのUSBポートに接続します（データ通信対応のケーブルをご使用ください）。",
+        step2_title: "「インストール」をクリック",
+        step2_desc: "上部にある緑色のインストールボタンをクリックして、接続プロンプトを起動します。",
+        step3_title: "COMポートを選択",
+        step3_desc: "ブラウザに表示されるポップアップでESP32のCOMポートを選択し、<strong>Connect</strong> をクリックします。",
+        step4_title: "書き込み完了",
+        step4_desc: "進捗バーが100%になるまでお待ちください。ESP32が自動的に再起動し、新しいファームウェアが起動します！",
+        driver_title: "COMポートが表示されませんか？",
+        driver_desc: "インストールをクリックしてもポート一覧が空の場合は、USB-UARTドライバーのインストールが必要な場合があります:",
+        driver1_title: "CH340 / CH341 ドライバー",
+        driver1_desc: "一般的なESP32 NodeMCU開発ボード用（WCH製チップ）",
+        driver2_title: "CP2102 / CP2104 ドライバー",
+        driver2_desc: "Silicon Labs製USB-UARTチップ搭載のESP32ボード用",
+        driver_download: "ダウンロード ↗",
+        trouble_title: "よくある質問・トラブルシューティング",
+        faq1_q: "接続をクリックしても「Failed to initialize」と表示される場合は？",
+        faq1_a: "Connectボタンを押す際、ESP32ボード上の <strong>BOOTボタン（またはIO0）を長押し</strong> してください。書き込み進捗バーが開始されたらBOOTボタンを離します。",
+        faq2_q: "USB接続時にPCから認識音が鳴らない場合は？",
+        faq2_a: "<strong>充電専用ケーブル</strong>（データ線がないケーブル）を使用している可能性があります。データ通信対応の高品質なUSBケーブルに交換してください。",
+        faq3_q: "Arduino IDEなどのソフトウェアをインストールする必要はありますか？",
+        faq3_a: "一切不要です！ファイルの取得からマイコンへの書き込みまで、すべてブラウザ内で完結します。",
+        footer_text: "Powered by <a href=\"https://esphome.github.io/esp-web-tools/\" target=\"_blank\">ESP Web Tools</a> &bull; Copyright &copy; 2026"
       }
     };
 
-    // Hàm đổi ngôn ngữ
+    // 3. Hàm cập nhật giao diện theo ngôn ngữ đã chọn
     function setLanguage(lang) {
       const currentTrans = translations[lang] || translations.vi;
       
-      // Cập nhật title và html lang
+      // Cập nhật tiêu đề trang & thuộc tính lang trên thẻ <html>
       document.title = currentTrans.page_title;
       document.documentElement.lang = lang;
 
@@ -257,42 +309,47 @@
         }
       });
 
-      // Cập nhật trạng thái nút chuyển ngôn ngữ
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-      });
+      // Đồng bộ giá trị thẻ select và cờ hiển thị
+      const langSelect = document.getElementById('langSelect');
+      const currentLangFlag = document.getElementById('currentLangFlag');
+      if (langSelect) langSelect.value = lang;
+      if (currentLangFlag) currentLangFlag.textContent = langFlags[lang] || "🌐";
 
       // Lưu lựa chọn ngôn ngữ vào LocalStorage
       localStorage.setItem('esp32_installer_lang', lang);
     }
 
-    // Lắng nghe sự kiện bấm nút đổi ngôn ngữ
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const selectedLang = btn.getAttribute('data-lang');
-        setLanguage(selectedLang);
+    // 4. Lắng nghe sự kiện người dùng chọn ngôn ngữ từ Dropdown
+    const langSelect = document.getElementById('langSelect');
+    if (langSelect) {
+      langSelect.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
       });
-    });
+    }
 
-    // Khởi tạo ngôn ngữ (ưu tiên LocalStorage, sau đó đến ngôn ngữ trình duyệt)
+    // 5. Khởi tạo ngôn ngữ ban đầu (Ưu tiên: LocalStorage -> Ngôn ngữ trình duyệt -> Mặc định 'vi')
     const savedLang = localStorage.getItem('esp32_installer_lang');
-    if (savedLang && (savedLang === 'vi' || savedLang === 'en')) {
+    if (savedLang && translations[savedLang]) {
       setLanguage(savedLang);
     } else {
-      const browserLang = navigator.language || navigator.userLanguage;
-      if (browserLang && browserLang.startsWith('en')) {
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (browserLang.startsWith('ja')) {
+        setLanguage('ja');
+      } else if (browserLang.startsWith('en')) {
         setLanguage('en');
       } else {
         setLanguage('vi');
       }
     }
 
-    // Xử lý đổi manifest khi chọn phiên bản khác nhau
+    // 6. Xử lý đổi manifest khi chọn phiên bản firmware khác nhau
     const channelSelect = document.getElementById('channelSelect');
     const installButton = document.getElementById('installButton');
-    channelSelect.addEventListener('change', (e) => {
-      installButton.setAttribute('manifest', e.target.value);
-    });
+    if (channelSelect && installButton) {
+      channelSelect.addEventListener('change', (e) => {
+        installButton.setAttribute('manifest', e.target.value);
+      });
+    }
   </script>
 </body>
 </html>
