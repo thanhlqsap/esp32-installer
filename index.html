@@ -23,27 +23,37 @@
         <span class="brand-icon">🌐</span>
         <span class="brand-name">ESP32 Web Installer</span>
       </div>
-      <div class="nav-links">
-        <a href="#guide">Hướng dẫn</a>
-        <a href="#drivers">Cài Driver</a>
-        <a href="#troubleshooting">Khắc phục lỗi</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#guide" data-i18n="nav_guide">Hướng dẫn</a>
+          <a href="#drivers" data-i18n="nav_drivers">Cài Driver</a>
+          <a href="#troubleshooting" data-i18n="nav_troubleshooting">Khắc phục lỗi</a>
+        </div>
+        <!-- Language Switcher -->
+        <div class="lang-switch" role="group" aria-label="Language Switcher">
+          <button class="lang-btn active" data-lang="vi" id="btnLangVi" title="Tiếng Việt">🇻🇳 VI</button>
+          <button class="lang-btn" data-lang="en" id="btnLangEn" title="English">🇬🇧 EN</button>
+        </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero">
-      <div class="hero-badge">🚀 Phiên bản chính thức v1.0.0</div>
-      <h1 class="hero-title">Nạp Firmware ESP32 <span class="gradient-text">Chỉ Với 1 Cú Bấm</span></h1>
-      <p class="hero-desc">
+      <div class="hero-badge" data-i18n="hero_badge">🚀 Phiên bản chính thức v1.0.0</div>
+      <h1 class="hero-title">
+        <span data-i18n="hero_title_1">Nạp Firmware ESP32</span> 
+        <span class="gradient-text" data-i18n="hero_title_2">Chỉ Với 1 Cú Bấm</span>
+      </h1>
+      <p class="hero-desc" data-i18n="hero_desc">
         Không cần cài đặt phần mềm nạp hay tải file về máy. Kết nối mạch ESP32 qua cáp USB và cài đặt trực tiếp từ đám mây.
       </p>
 
       <!-- Khung Cài Đặt Chính -->
       <div class="install-box">
         <div class="version-select-row">
-          <label for="channelSelect">Chọn phiên bản firmware:</label>
+          <label for="channelSelect" data-i18n="label_version">Chọn phiên bản firmware:</label>
           <select id="channelSelect" class="channel-select">
-            <option value="./manifest.json">v1.0.0 (Bản ổn định - Stable)</option>
+            <option value="./manifest.json" data-i18n="opt_stable">v1.0.0 (Bản ổn định - Stable)</option>
           </select>
         </div>
 
@@ -52,91 +62,91 @@
           <esp-web-install-button id="installButton" manifest="./manifest.json">
             <button slot="activate" class="btn-install">
               <span class="btn-install-icon">⚡</span>
-              <span>Cài đặt Firmware ngay</span>
+              <span data-i18n="btn_install">Cài đặt Firmware ngay</span>
             </button>
-            <span slot="unsupported" class="unsupported-msg">
+            <span slot="unsupported" class="unsupported-msg" data-i18n="unsupported_msg">
               ⚠️ Trình duyệt của bạn không hỗ trợ Web Serial. Vui lòng mở trang web này bằng <strong>Google Chrome</strong> hoặc <strong>Microsoft Edge</strong> trên máy tính.
             </span>
           </esp-web-install-button>
         </div>
 
-        <p class="install-hint">Yêu cầu cấp quyền cổng Serial khi trình duyệt hiển thị pop-up.</p>
+        <p class="install-hint" data-i18n="install_hint">Yêu cầu cấp quyền cổng Serial khi trình duyệt hiển thị pop-up.</p>
       </div>
     </header>
 
     <!-- Các bước thực hiện -->
     <section id="guide" class="section">
-      <h2 class="section-title">4 Bước Cài Đặt Siêu Nhanh</h2>
+      <h2 class="section-title" data-i18n="guide_title">4 Bước Cài Đặt Siêu Nhanh</h2>
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-num">01</div>
-          <h3>Cắm cáp USB</h3>
-          <p>Kết nối bo mạch ESP32 vào máy tính qua cổng USB (Lưu ý dùng cáp có truyền dữ liệu Data).</p>
+          <h3 data-i18n="step1_title">Cắm cáp USB</h3>
+          <p data-i18n="step1_desc">Kết nối bo mạch ESP32 vào máy tính qua cổng USB (Lưu ý dùng cáp có truyền dữ liệu Data).</p>
         </div>
         <div class="step-card">
           <div class="step-num">02</div>
-          <h3>Bấm 'Cài đặt'</h3>
-          <p>Nhấn vào nút cài đặt màu xanh phía trên để kích hoạt trình duyệt mở cổng kết nối.</p>
+          <h3 data-i18n="step2_title">Bấm 'Cài đặt'</h3>
+          <p data-i18n="step2_desc">Nhấn vào nút cài đặt màu xanh phía trên để kích hoạt trình duyệt mở cổng kết nối.</p>
         </div>
         <div class="step-card">
           <div class="step-num">03</div>
-          <h3>Chọn Cổng COM</h3>
-          <p>Trên pop-up xuất hiện ở góc trên trình duyệt, chọn đúng cổng COM của ESP32 và bấm <strong>Connect</strong>.</p>
+          <h3 data-i18n="step3_title">Chọn Cổng COM</h3>
+          <p data-i18n="step3_desc">Trên pop-up xuất hiện ở góc trên trình duyệt, chọn đúng cổng COM của ESP32 và bấm <strong>Connect</strong>.</p>
         </div>
         <div class="step-card">
           <div class="step-num">04</div>
-          <h3>Hoàn tất nạp</h3>
-          <p>Chờ tiến trình chạy 100%. ESP32 sẽ tự khởi động và chạy firmware mới ngay lập tức!</p>
+          <h3 data-i18n="step4_title">Hoàn tất nạp</h3>
+          <p data-i18n="step4_desc">Chờ tiến trình chạy 100%. ESP32 sẽ tự khởi động và chạy firmware mới ngay lập tức!</p>
         </div>
       </div>
     </section>
 
     <!-- Cài đặt Driver -->
     <section id="drivers" class="section">
-      <h2 class="section-title">Không thấy cổng COM xuất hiện?</h2>
-      <p class="section-desc">Nếu bấm cài đặt mà danh sách cổng COM bị trống, có thể máy tính của bạn cần cài Driver cho chip nạp:</p>
+      <h2 class="section-title" data-i18n="driver_title">Không thấy cổng COM xuất hiện?</h2>
+      <p class="section-desc" data-i18n="driver_desc">Nếu bấm cài đặt mà danh sách cổng COM bị trống, có thể máy tính của bạn cần cài Driver cho chip nạp:</p>
       
       <div class="driver-grid">
         <a href="https://www.wch.cn/downloads/CH341SER_EXE.html" target="_blank" class="driver-card">
           <div class="driver-icon">💾</div>
           <div class="driver-info">
-            <h4>Driver CH340 / CH341</h4>
-            <p>Dành cho các mạch ESP32 NodeMCU thông dụng (Trung Quốc)</p>
+            <h4 data-i18n="driver1_title">Driver CH340 / CH341</h4>
+            <p data-i18n="driver1_desc">Dành cho các mạch ESP32 NodeMCU thông dụng (Trung Quốc)</p>
           </div>
-          <span class="driver-download-btn">Tải về ↗</span>
+          <span class="driver-download-btn" data-i18n="driver_download">Tải về ↗</span>
         </a>
 
         <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank" class="driver-card">
           <div class="driver-icon">🔌</div>
           <div class="driver-info">
-            <h4>Driver CP2102 / CP2104</h4>
-            <p>Dành cho các mạch ESP32 chính hãng Silicon Labs</p>
+            <h4 data-i18n="driver2_title">Driver CP2102 / CP2104</h4>
+            <p data-i18n="driver2_desc">Dành cho các mạch ESP32 chính hãng Silicon Labs</p>
           </div>
-          <span class="driver-download-btn">Tải về ↗</span>
+          <span class="driver-download-btn" data-i18n="driver_download">Tải về ↗</span>
         </a>
       </div>
     </section>
 
     <!-- Khắc phục sự cố -->
     <section id="troubleshooting" class="section">
-      <h2 class="section-title">Khắc Phục Sự Cố Thường Gặp</h2>
+      <h2 class="section-title" data-i18n="trouble_title">Khắc Phục Sự Cố Thường Gặp</h2>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>Bấm kết nối nhưng báo lỗi "Failed to initialize"?</summary>
+          <summary data-i18n="faq1_q">Bấm kết nối nhưng báo lỗi "Failed to initialize"?</summary>
           <div class="faq-content">
-            <p>Hãy <strong>nhấn giữ nút BOOT</strong> (hoặc IO0) trên bo mạch ESP32 khi bắt đầu bấm nút Connect trên web, thả nút BOOT ra khi thấy thanh tiến trình bắt đầu nạp.</p>
+            <p data-i18n="faq1_a">Hãy <strong>nhấn giữ nút BOOT</strong> (hoặc IO0) trên bo mạch ESP32 khi bắt đầu bấm nút Connect trên web, thả nút BOOT ra khi thấy thanh tiến trình bắt đầu nạp.</p>
           </div>
         </details>
         <details class="faq-item">
-          <summary>Máy tính không phát ra âm thanh cắm thiết bị khi cắm USB?</summary>
+          <summary data-i18n="faq2_q">Máy tính không phát ra âm thanh cắm thiết bị khi cắm USB?</summary>
           <div class="faq-content">
-            <p>Khả năng cao bạn đang dùng <strong>cáp sạc đơn thuần</strong> (chỉ có 2 dây nguồn, không có dây Data). Hãy đổi sang một sợi cáp USB truyền dữ liệu tốt hơn.</p>
+            <p data-i18n="faq2_a">Khả năng cao bạn đang dùng <strong>cáp sạc đơn thuần</strong> (chỉ có 2 dây nguồn, không có dây Data). Hãy đổi sang một sợi cáp USB truyền dữ liệu tốt hơn.</p>
           </div>
         </details>
         <details class="faq-item">
-          <summary>Có cần cài Arduino IDE hay phần mềm nào khác không?</summary>
+          <summary data-i18n="faq3_q">Có cần cài Arduino IDE hay phần mềm nào khác không?</summary>
           <div class="faq-content">
-            <p>Hoàn toàn không! Mọi thao tác tải file và nạp vào chip đều do trình duyệt xử lý tự động.</p>
+            <p data-i18n="faq3_a">Hoàn toàn không! Mọi thao tác tải file và nạp vào chip đều do trình duyệt xử lý tự động.</p>
           </div>
         </details>
       </div>
@@ -144,12 +154,140 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>Phát triển dựa trên <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a> &bull; Bản quyền &copy; 2026</p>
+      <p data-i18n="footer_text">Phát triển dựa trên <a href="https://esphome.github.io/esp-web-tools/" target="_blank">ESP Web Tools</a> &bull; Bản quyền &copy; 2026</p>
     </footer>
   </div>
 
   <script>
-    // Xử lý đổi manifest khi chọn phiên bản khác nhau (nếu sau này thêm nhiều version)
+    // Bộ từ điển song ngữ Anh - Việt
+    const translations = {
+      vi: {
+        page_title: "Cài Đặt Firmware ESP32 Trực Tuyến (Web Installer)",
+        nav_guide: "Hướng dẫn",
+        nav_drivers: "Cài Driver",
+        nav_troubleshooting: "Khắc phục lỗi",
+        hero_badge: "🚀 Phiên bản chính thức v1.0.0",
+        hero_title_1: "Nạp Firmware ESP32",
+        hero_title_2: "Chỉ Với 1 Cú Bấm",
+        hero_desc: "Không cần cài đặt phần mềm nạp hay tải file về máy. Kết nối mạch ESP32 qua cáp USB và cài đặt trực tiếp từ đám mây.",
+        label_version: "Chọn phiên bản firmware:",
+        opt_stable: "v1.0.0 (Bản ổn định - Stable)",
+        btn_install: "Cài đặt Firmware ngay",
+        unsupported_msg: "⚠️ Trình duyệt của bạn không hỗ trợ Web Serial. Vui lòng mở trang web này bằng <strong>Google Chrome</strong> hoặc <strong>Microsoft Edge</strong> trên máy tính.",
+        install_hint: "Yêu cầu cấp quyền cổng Serial khi trình duyệt hiển thị pop-up.",
+        guide_title: "4 Bước Cài Đặt Siêu Nhanh",
+        step1_title: "Cắm cáp USB",
+        step1_desc: "Kết nối bo mạch ESP32 vào máy tính qua cổng USB (Lưu ý dùng cáp có truyền dữ liệu Data).",
+        step2_title: "Bấm 'Cài đặt'",
+        step2_desc: "Nhấn vào nút cài đặt màu xanh phía trên để kích hoạt trình duyệt mở cổng kết nối.",
+        step3_title: "Chọn Cổng COM",
+        step3_desc: "Trên pop-up xuất hiện ở góc trên trình duyệt, chọn đúng cổng COM của ESP32 và bấm <strong>Connect</strong>.",
+        step4_title: "Hoàn tất nạp",
+        step4_desc: "Chờ tiến trình chạy 100%. ESP32 sẽ tự khởi động và chạy firmware mới ngay lập tức!",
+        driver_title: "Không thấy cổng COM xuất hiện?",
+        driver_desc: "Nếu bấm cài đặt mà danh sách cổng COM bị trống, có thể máy tính của bạn cần cài Driver cho chip nạp:",
+        driver1_title: "Driver CH340 / CH341",
+        driver1_desc: "Dành cho các mạch ESP32 NodeMCU thông dụng (Trung Quốc)",
+        driver2_title: "Driver CP2102 / CP2104",
+        driver2_desc: "Dành cho các mạch ESP32 chính hãng Silicon Labs",
+        driver_download: "Tải về ↗",
+        trouble_title: "Khắc Phục Sự Cố Thường Gặp",
+        faq1_q: "Bấm kết nối nhưng báo lỗi \"Failed to initialize\"?",
+        faq1_a: "Hãy <strong>nhấn giữ nút BOOT</strong> (hoặc IO0) trên bo mạch ESP32 khi bắt đầu bấm nút Connect trên web, thả nút BOOT ra khi thấy thanh tiến trình bắt đầu nạp.",
+        faq2_q: "Máy tính không phát ra âm thanh cắm thiết bị khi cắm USB?",
+        faq2_a: "Khả năng cao bạn đang dùng <strong>cáp sạc đơn thuần</strong> (chỉ có 2 dây nguồn, không có dây Data). Hãy đổi sang một sợi cáp USB truyền dữ liệu tốt hơn.",
+        faq3_q: "Có cần cài Arduino IDE hay phần mềm nào khác không?",
+        faq3_a: "Hoàn toàn không! Mọi thao tác tải file và nạp vào chip đều do trình duyệt xử lý tự động.",
+        footer_text: "Phát triển dựa trên <a href=\"https://esphome.github.io/esp-web-tools/\" target=\"_blank\">ESP Web Tools</a> &bull; Bản quyền &copy; 2026"
+      },
+      en: {
+        page_title: "ESP32 Online Firmware Installer (Web Flasher)",
+        nav_guide: "Guide",
+        nav_drivers: "Drivers",
+        nav_troubleshooting: "Troubleshooting",
+        hero_badge: "🚀 Official Release v1.0.0",
+        hero_title_1: "Flash ESP32 Firmware",
+        hero_title_2: "In Just 1 Click",
+        hero_desc: "No flasher software or manual file download needed. Connect your ESP32 board via USB and install directly from the cloud.",
+        label_version: "Select firmware version:",
+        opt_stable: "v1.0.0 (Stable Release)",
+        btn_install: "Install Firmware Now",
+        unsupported_msg: "⚠️ Your browser does not support Web Serial. Please open this page using <strong>Google Chrome</strong> or <strong>Microsoft Edge</strong> on desktop.",
+        install_hint: "Serial port permission required when the browser prompt appears.",
+        guide_title: "4 Quick Steps to Install",
+        step1_title: "Connect USB Cable",
+        step1_desc: "Plug your ESP32 board into your computer using a USB cable (Ensure it supports Data transfer).",
+        step2_title: "Click 'Install'",
+        step2_desc: "Click the green install button above to trigger the browser connection prompt.",
+        step3_title: "Select COM Port",
+        step3_desc: "In the browser popup, select the ESP32 COM port and click <strong>Connect</strong>.",
+        step4_title: "Flashing Complete",
+        step4_desc: "Wait for the progress to reach 100%. ESP32 will automatically reboot and run the new firmware!",
+        driver_title: "COM Port Not Appearing?",
+        driver_desc: "If the COM port list is empty after clicking install, your PC may need the USB-to-UART driver:",
+        driver1_title: "CH340 / CH341 Driver",
+        driver1_desc: "For common NodeMCU ESP32 boards (WCH chip)",
+        driver2_title: "CP2102 / CP2104 Driver",
+        driver2_desc: "For official Silicon Labs USB-to-UART ESP32 boards",
+        driver_download: "Download ↗",
+        trouble_title: "Frequently Asked Questions",
+        faq1_q: "Click Connect but get \"Failed to initialize\" error?",
+        faq1_a: "Please <strong>press and hold the BOOT button</strong> (or IO0) on your ESP32 board when clicking Connect, then release it once flashing starts.",
+        faq2_q: "No device connection sound when plugging in USB?",
+        faq2_a: "You might be using a <strong>charge-only cable</strong> (no data lines). Please replace it with a proper USB data cable.",
+        faq3_q: "Do I need Arduino IDE or any special tool?",
+        faq3_a: "Not at all! Downloading files and flashing the chip is handled 100% inside your browser.",
+        footer_text: "Powered by <a href=\"https://esphome.github.io/esp-web-tools/\" target=\"_blank\">ESP Web Tools</a> &bull; Copyright &copy; 2026"
+      }
+    };
+
+    // Hàm đổi ngôn ngữ
+    function setLanguage(lang) {
+      const currentTrans = translations[lang] || translations.vi;
+      
+      // Cập nhật title và html lang
+      document.title = currentTrans.page_title;
+      document.documentElement.lang = lang;
+
+      // Cập nhật tất cả các phần tử có data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (currentTrans[key]) {
+          el.innerHTML = currentTrans[key];
+        }
+      });
+
+      // Cập nhật trạng thái nút chuyển ngôn ngữ
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+
+      // Lưu lựa chọn ngôn ngữ vào LocalStorage
+      localStorage.setItem('esp32_installer_lang', lang);
+    }
+
+    // Lắng nghe sự kiện bấm nút đổi ngôn ngữ
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedLang = btn.getAttribute('data-lang');
+        setLanguage(selectedLang);
+      });
+    });
+
+    // Khởi tạo ngôn ngữ (ưu tiên LocalStorage, sau đó đến ngôn ngữ trình duyệt)
+    const savedLang = localStorage.getItem('esp32_installer_lang');
+    if (savedLang && (savedLang === 'vi' || savedLang === 'en')) {
+      setLanguage(savedLang);
+    } else {
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang && browserLang.startsWith('en')) {
+        setLanguage('en');
+      } else {
+        setLanguage('vi');
+      }
+    }
+
+    // Xử lý đổi manifest khi chọn phiên bản khác nhau
     const channelSelect = document.getElementById('channelSelect');
     const installButton = document.getElementById('installButton');
     channelSelect.addEventListener('change', (e) => {
