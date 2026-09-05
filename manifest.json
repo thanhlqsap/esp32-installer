@@ -1,0 +1,13 @@
+{
+  "name": "ESP32 IoT Node Firmware",
+  "version": "1.0.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "./firmware/esp32_firmware.bin", "offset": 0 }
+      ]
+    }
+  ]
+}
